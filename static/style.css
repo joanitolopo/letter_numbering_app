@@ -1,0 +1,316 @@
+/* Reset dan pengaturan dasar */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 90vw;
+    margin: 0 auto;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.625rem rgba(0,0,0,0.1);
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    margin: 0.5rem 0.25rem 0.5rem 0;
+    font-size: 1rem;
+    touch-action: manipulation;
+    cursor: pointer;
+    border: none;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.btn-small {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+.btn-edit {
+    background-color: #2196F3;
+}
+
+.btn-edit:hover {
+    background-color: #1976D2;
+}
+
+.btn-delete {
+    background-color: #F44336;
+}
+
+.btn-delete:hover {
+    background-color: #D32F2F;
+}
+
+.btn-add-officer {
+    background-color: #FFC107;
+}
+
+.btn-add-officer:hover {
+    background-color: #FFA000;
+}
+
+.btn-remove-officer {
+    background-color: #F44336;
+}
+
+.btn-remove-officer:hover {
+    background-color: #D32F2F;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.filter-group {
+    margin-bottom: 1rem;
+}
+
+.filter-group form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-group label {
+    font-weight: bold;
+    font-size: 0.875rem;
+}
+
+.filter-group input[type="date"] {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    width: auto;
+}
+
+.filter-group p {
+    margin: 0.5rem 0 0 0;
+    color: #333;
+    font-size: 0.875rem;
+}
+
+.alert {
+    padding: 0.625rem;
+    margin: 0.625rem 0;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+}
+
+.alert-success {
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+
+.alert-error {
+    background-color: #f2dede;
+    color: #a94442;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.3125rem;
+    font-size: 0.875rem;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+}
+
+.officer-field {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.officer-select {
+    flex: 1;
+}
+
+/* Tabel responsif */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.document-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 0.875rem;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Media queries untuk mobile */
+@media screen and (max-width: 600px) {
+    .container {
+        padding: 1rem;
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: 1.25rem;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+        padding: 0.75rem;
+        font-size: 0.875rem;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .filter-group form {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filter-group input[type="date"],
+    .filter-group button,
+    .filter-group a.btn {
+        width: 100%;
+    }
+
+    .form-group input,
+    .form-group select {
+        font-size: 0.875rem;
+    }
+
+    .officer-field {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .officer-select {
+        margin-bottom: 0.5rem;
+    }
+
+    /* Ubah tabel menjadi tata letak kartu untuk mobile */
+    .document-table {
+        display: block;
+    }
+
+    .document-table thead {
+        display: none;
+    }
+
+    .document-table tbody {
+        display: block;
+    }
+
+    .document-table tr.document-card {
+        display: block;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 0.25rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.1);
+    }
+
+    .document-table td {
+        display: block;
+        padding: 0.25rem 0;
+        font-size: 0.875rem;
+        border: none;
+    }
+
+    .document-table td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: inline-block;
+        width: 40%;
+        vertical-align: top;
+    }
+
+    .document-table td[data-label="Aksi"] {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: flex-start;
+    }
+
+    .document-table td[data-label="Aksi"] form {
+        display: inline-block;
+    }
+
+    .btn-small {
+        width: auto;
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Pastikan tombol dan elemen interaktif cukup besar untuk sentuhan */
+@media (hover: none) {
+    .btn, .btn-small {
+        min-height: 2.5rem;
+        min-width: 2.5rem;
+    }
+}
+
+.officer-list {
+    list-style-type: disc;
+    margin: 0;
+    padding-left: 20px;
+}
+
+.officer-list li {
+    margin-bottom: 5px;
+    word-wrap: break-word;
+}

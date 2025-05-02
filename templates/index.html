@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Dokumen</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Daftar Dokumen</h1>
+        <div class="button-group">
+            <a href="{{ url_for('add_document') }}" class="btn">Tambah Dokumen</a>
+            <a href="{{ url_for('download_excel') }}" class="btn">Download Excel</a>
+        </div>
+        
+        <div class="filter-group">
+            <form method="POST">
+                <label for="filter_date">Filter Tanggal:</label>
+                <input type="date" id="filter_date" name="filter_date" value="{{ selected_date.strftime('%Y-%m-%d') if selected_date else '' }}">
+                <button type="submit" class="btn">Filter</button>
+                {% if selected_date %}
+                    <a href="{{ url_for('index') }}" class="btn">Hapus Filter</a>
+                {% endif %}
+            </form>
+            {% if selected_date %}
+                <p>Menampilkan dokumen untuk tanggal: {{ selected_date.strftime('%d-%m-%Y') }}</p>
+            {% endif %}
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="table-responsive">
+            <table class="document-table">
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>No. Urut</th>
+                        <th>Nama Petugas</th>
+                        <th>Kegiatan</th>
+                        <th>Nomor Surat</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for doc in documents %}
+                    <tr class="document-card">
+                        <td data-label="Tanggal">{{ doc.date.strftime('%d-%m-%Y') }}</td>
+                        <td data-label="No. Urut">{{ doc.sequence_number }}</td>
+                        <td data-label="Nama Petugas">
+                            <ul class="officer-list">
+                                {% for officer in doc.officer_names.split(';') | map('trim') | reject('eq', '') %}
+                                    <li>{{ officer }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td data-label="Kegiatan">{{ doc.activity }}</td>
+                        <td data-label="Nomor Surat">{{ doc.document_number }}</td>
+                        <td data-label="Aksi">
+                            <a href="{{ url_for('edit_document', id=doc.id) }}" class="btn btn-small btn-edit">Edit</a>
+                            <form action="{{ url_for('delete_document', id=doc.id) }}" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-small btn-delete" onclick="return confirm('Apakah Anda yakin ingin menghapus dokumen ini?');">Hapus</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
