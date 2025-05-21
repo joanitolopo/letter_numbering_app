@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Dokumen</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="container">
@@ -51,7 +51,13 @@
                 <tbody>
                     {% for doc in documents %}
                     <tr class="document-card">
-                        <td data-label="Tanggal">{{ doc.date.strftime('%d-%m-%Y') }}</td>
+                        <td data-label="Tanggal">
+                            {% if doc.end_date %}
+                                {{ doc.start_date.strftime('%d-%m-%Y') }} s.d. {{ doc.end_date.strftime('%d-%m-%Y') }}
+                            {% else %}
+                                {{ doc.start_date.strftime('%d-%m-%Y') }}
+                            {% endif %}
+                        </td>
                         <td data-label="No. Urut">{{ doc.sequence_number }}</td>
                         <td data-label="Nama Petugas">
                             <ul class="officer-list">
